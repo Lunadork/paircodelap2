@@ -29,16 +29,28 @@ async function getPostById(id)
     }
 }
 
-async function createPost(event)
+async function createPost(e)
 {
-    event.preventDefailt();
+    e.preventDefault();
+
+    // Doesn't work....
+    // let title = e.target.title.value;
+    // let author = e.target.author.value;
+    // let body = e.target.body.value;
 
     try
     {
         const options = 
         { method: 'POST', 
           headers: {"Content-Type" : "application/json"}, 
-          body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
+          body: JSON.stringify
+          (
+            {
+                "title": "placeTitles",
+                "author" : "placeAuthor",
+                "body": "placeBody"
+            }    
+          )
         };
 
         const response = await fetch ("http://localhost:3000/posts",options);

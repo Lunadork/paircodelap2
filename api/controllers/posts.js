@@ -37,7 +37,7 @@ async function create (req,res)
     }
     catch
     {
-        res.status(422).json({err});
+        res.status(422).json({err})
     }
 }
 

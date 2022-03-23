@@ -45,10 +45,10 @@ module.exports = class Post
 
 
         // CREATE POST CODE BELOW
-         static create(title, author = "anon", content) {
+         static create(reqbody) {
             return new Promise (async (resolve, reject) => {
                 try {
-                    let postData = await db.query(`INSERT INTO posts (title, author, content) VALUES ($1, $2, $3) RETURNING *;`, [ title, author, content ]);
+                    let postData = await db.query(`INSERT INTO posts (title, author, body) VALUES ($1, $2, $3) RETURNING *;`, [ reqbody.title, reqbody.author, reqbody.body ]);
                     let newPost = new Post(postData.rows[0]);
                     resolve (newPost)
 

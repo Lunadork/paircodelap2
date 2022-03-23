@@ -1,4 +1,4 @@
-INSERT INTO posts (title, author, content)
+INSERT INTO posts (title, author, body)
 VALUES
 (
     'Test Title 1',
