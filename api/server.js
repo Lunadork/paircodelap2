@@ -5,9 +5,9 @@ const cors = require('cors');
 app.use(cors('*'));
 app.use(express.json());
 
-const routes = require('./routes/routes');
+const postRoutes = require('./routes/posts');
 
-app.use('/routes', routes);
+app.use('/routes', postRoutes);
 
 
 app.get('/', (req, res) => 
