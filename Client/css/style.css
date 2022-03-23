@@ -1,8 +1,40 @@
 
 
-
-
-.publish {
+h1 {
     font-family: 'Dosis', sans-serif;
     font-family: 'Open Sans', sans-serif;
-    background-color: ;}
+    font-size: 32px;
+    margin: 21px 12px;
+    color: rgba(0, 0, 0, 0.801); 
+}
+
+
+address {
+    font-family: 'Dosis', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    color: #79828B;
+    margin: 12px 21px;
+}
+
+p {
+    font-family: 'Dosis', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.445);
+
+}
+
+
+#publish {
+    font-family: 'Dosis', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    color: black;
+    font-size: 17px;
+    border: 2px solid #333; 
+    border-radius: 16px;
+    padding: 4px 12px;
+    margin: 15px;
+}
+
+
