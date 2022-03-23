@@ -1,15 +1,20 @@
+//requires for DB
 const db = require('../dbConfig/init');
 const SQL = require('sql-template-strings');
 
+//define and simultaneously export Post class
 module.exports = class Post
 {
+        //basic constructor
         constructor(data)
         {
+            this.id = data.id;
             this.title = data.title;
             this.author = data.author;
             this.body = data.body;
         }
 
+        //get all function
         static get all()
         {
             return new Promise (async (res, rej) =>
@@ -28,13 +33,12 @@ module.exports = class Post
         }
 
 
-        //SHOW SINGLE POST CODE BELOW
+        //Find a single post and return it
         static findById(id) {
             return new Promise(async (res, rej) => {
                 try 
                 {
                     let postData = await db.query(`SELECT * FROM posts WHERE id = $1;`, [ id ]);
-                    //let post = new Post(postData.rows[0]);
                     res(postData.rows[0]); 
                 } catch (err) {
                     rej('Post not found' + err)
@@ -44,12 +48,11 @@ module.exports = class Post
 
 
 
-        // CREATE POST CODE BELOW
+        // Create a post, return the new post in the response/resolve code
          static create(reqbody) {
             return new Promise (async (resolve, reject) => {
                 try {
-                    let postData = await db.query(`INSERT INTO posts (title, author, body) VALUES ($1, $2, $3) RETURNING *;`, [ reqbody.title, reqbody.author, reqbody.body ]);
-                    // let newPost = new Post(postData.rows[0]);
+                    let postData = await db.query(`INSERT INTO posts (title, author, body) VALUES ($1, $2, $3) RETURNING *;`, [ reqbody.title, reqbody.author = "anonymous", reqbody.body ]);
                     resolve (postData.rows[0]);
                 } catch(err) {
                     reject('Error creating post: ' + err) 

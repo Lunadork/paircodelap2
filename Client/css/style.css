@@ -7,10 +7,12 @@ body {
 
 
 .content {
-    display: block;
     position: relative;
     padding: 14px; 
-    padding-left: 590px; 
+    padding-left: 400px; 
+
+    display:flex;
+    flex-direction: column;
     
 }
 
@@ -24,7 +26,7 @@ h1 {
     font-weight:400;
     font-style: normal;
     margin: 21px 21px 12px;
-    color: rgba(0, 0, 0, 0.575); 
+    color: rgb(0, 0, 0); 
 }
 
 
@@ -62,7 +64,56 @@ button {
     margin: 15px;
     font-weight: bolder;
     background-color: white;
-    margin: -130px 1200px;
+   
        
 }
 
+
+#titleInput {
+
+    font-family: 'Open Sans', sans-serif;
+    font-size: 32px;
+    font-weight:400;
+    font-style: normal;
+    margin: 21px 21px 12px;
+    color: rgba(0, 0, 0, 0.575); 
+
+    border-style: hidden;
+    
+
+}
+
+#authorInput {
+
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    color: #79828B;
+    margin: 12px 21px;
+    font-style: normal;
+
+    border-style: hidden;
+}
+
+#contentInput {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    margin: 12px 21px;
+    color: rgba(0, 0, 0, 0.445);
+
+    border-style: hidden;
+
+}
+
+
+#postButton {
+    font-family: 'Open Sans', sans-serif;
+    color: black;
+    font-size: 15px;
+    border: 2px solid #333; 
+    border-radius: 16px;
+    padding: 6px 12px;
+    margin: 15px;
+    font-weight: bolder;
+    background-color: white;
+    max-width: 10vw;
+}

@@ -1,5 +1,7 @@
+// Require post model
 const Post = require('../models/post');
 
+//show all route controller code.
 async function showAll (req,res)
 {
     try 
@@ -13,6 +15,7 @@ async function showAll (req,res)
     }
 }
 
+//show one controller code
 async function showOne (req,res)
 {
 
@@ -28,6 +31,7 @@ async function showOne (req,res)
 
 }
 
+//create a new post controller code
 async function create (req,res)
 {
     try
@@ -41,5 +45,5 @@ async function create (req,res)
     }
 }
 
-
+//Export it all  { } 's are needed.. I'm not sure why.
 module.exports = { showAll, showOne, create };
