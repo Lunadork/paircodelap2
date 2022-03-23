@@ -18,7 +18,7 @@ async function getPostById(id)
 {
     try 
     {
-        const response = await fetch (`http://locahost:3000/posts/${id}`);
+        const response = await fetch (`http://localhost:3000/posts/${id}`);
         const data = await response.json();
         return data;
     }
@@ -33,36 +33,27 @@ async function createPost(e)
 {
     e.preventDefault();
 
-    // Doesn't work....
-    // let title = e.target.title.value;
-    // let author = e.target.author.value;
-    // let body = e.target.body.value;
-
     try
     {
         const options = 
-        { method: 'POST', 
+        { 
+          method: 'POST', 
           headers: {"Content-Type" : "application/json"}, 
-          body: JSON.stringify
-          (
-            {
-                "title": "placeTitles",
-                "author" : "placeAuthor",
-                "body": "placeBody"
-            }    
-          )
+          body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
         };
 
         const response = await fetch ("http://localhost:3000/posts",options);
-        const {id, err} = await response.json();
+        const data = await response.json();
 
-        if(err)
+        console.log("Post created, id is: " +data.id)
+
+        if(data.err)
         {
-            throw Error(err)
+            throw Error(data.err)
         }
         else
         {
-            window.location.hash = `#posts/${id}`
+             renderPost(data.id);
         }
     }
     catch (err)

@@ -31,11 +31,11 @@ module.exports = class Post
         //SHOW SINGLE POST CODE BELOW
         static findById(id) {
             return new Promise(async (res, rej) => {
-                try {
-                    let postData = await db.query(`SELECT * FROM posts WHERE id = $1 RETURNING id;`, [ id ]);
-                    let post = new Post(postData.rows[0]);
-                    resolve(post);
-
+                try 
+                {
+                    let postData = await db.query(`SELECT * FROM posts WHERE id = $1;`, [ id ]);
+                    //let post = new Post(postData.rows[0]);
+                    res(postData.rows[0]); 
                 } catch (err) {
                     rej('Post not found' + err)
                 }
@@ -49,9 +49,8 @@ module.exports = class Post
             return new Promise (async (resolve, reject) => {
                 try {
                     let postData = await db.query(`INSERT INTO posts (title, author, body) VALUES ($1, $2, $3) RETURNING *;`, [ reqbody.title, reqbody.author, reqbody.body ]);
-                    let newPost = new Post(postData.rows[0]);
-                    resolve (newPost)
-
+                    // let newPost = new Post(postData.rows[0]);
+                    resolve (postData.rows[0]);
                 } catch(err) {
                     reject('Error creating post: ' + err) 
                 }
