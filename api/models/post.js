@@ -16,7 +16,7 @@ module.exports = class Post
             {   
                 try
                 {
-                    let postsData = await db.query('SELECT * FROM posts');
+                    let postsData = await db.query('SELECT * FROM posts;');
                     let posts = postsData.rows.map(b => new Post(b));
                     res(posts);
                 }
@@ -27,8 +27,25 @@ module.exports = class Post
             })
         }
 
+
+        //SHOW SINGLE POST CODE BELOW
+        static findById(id) {
+            return new Promise(async (res, rej) => {
+                try {
+                    let postData = await db.query(`SELECT * FROM posts WHERE id = $1 RETURNING id;`, [ id ]);
+                    let post = new Post(postData.rows[0]);
+                    resolve(post);
+
+                } catch (err) {
+                    rej('Post not found' + err)
+                }
+            })
+        }
+
+
+
         // CREATE POST CODE BELOW
-         static create(title, author, content) {
+         static create(title, author = "anon", content) {
             return new Promise (async (resolve, reject) => {
                 try {
                     let postData = await db.query(`INSERT INTO posts (title, author, content) VALUES ($1, $2, $3) RETURNING *;`, [ title, author, content ]);
