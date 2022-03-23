@@ -1,6 +1,7 @@
 //Get the divs we're going to be renderring elements to
 const formDiv = document.getElementById("formDiv");
 const postDiv = document.getElementById("postDiv");
+const headerDiv = document.getElementById("header");
 
 //On load, render the post form
 window.addEventListener('load',renderPostForm);
@@ -22,11 +23,13 @@ async function renderPostForm()
 {
     postDiv.innerHTML = "";
     formDiv.innerHTML = "";
+    headerDiv.innerHTML = "";
 
     //Basic header at the top of the page.  Creates, adds.
     const formHeader = document.createElement("h1");
-    formHeader.textContent = "Your post";
-    formDiv.appendChild(formHeader);
+    formHeader.textContent = "Telegraph";
+    headerDiv.appendChild(formHeader);
+
 
     // creates the form element and loops through fields array, creating elements based on tag and adding their attributes as per their entries
     const form = document.createElement('form');
@@ -86,10 +89,16 @@ async function renderPost(id)
         authorp.textContent = data.author;
         bodyp.textContent = data.body;
 
+        //Add col-12 bootstrap class
+        titleh1.classList.add("col-12");
+        authorp.classList.add("col-12");
+        bodyp.classList.add("col-12");
+
         //Create a return button to go back to post creation form.
         let returnButton = document.createElement("button");
         returnButton.textContent = "Back";
         returnButton.addEventListener('click',renderPostForm)
+        returnButton.classList.add("col-12");
 
         //add them all to the postDiv
         postDiv.appendChild(titleh1);

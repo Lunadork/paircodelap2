@@ -51,9 +51,7 @@
 
 ## Bugs
 
-- If navigating to an invalid hash, a 404 is not rendered
-
-
+- styling doesn't perfectly match telegra.ph, but is close 
 
 ## Wins and Challenges
 

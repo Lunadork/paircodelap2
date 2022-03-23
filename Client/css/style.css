@@ -50,7 +50,6 @@ p {
 
 button {
     display: block;
-    position: fixed;
 }
 
 #publish {
@@ -116,4 +115,19 @@ button {
     font-weight: bolder;
     background-color: white;
     max-width: 10vw;
+}
+
+
+button {
+    font-family: 'Open Sans', sans-serif;
+    color: black;
+    font-size: 15px;
+    border: 2px solid #333; 
+    border-radius: 16px;
+    padding: 6px 12px;
+    margin: 15px;
+    font-weight: bolder;
+    background-color: white;
+    max-width: 10vw;
+
 }
