@@ -18,25 +18,25 @@ module.exports = class Post
                 {
                     let postsData = await db.query('SELECT * FROM posts');
                     let posts = postsData.rows.map(b => new Post(b));
-                    resolve(posts);
+                    res(posts);
                 }
                 catch (err)
                 {
-                    reject ('Posts not found');
+                    rej ('Posts not found, error: ' +err);
                 }
             })
         }
 
-        //CREATE POST CODE BELOW
+        // CREATE POST CODE BELOW
          static create(title, author, content) {
             return new Promise (async (resolve, reject) => {
                 try {
-                    let postData = await db.query(`INSERT INTO posts (title, author, content) VALUES ($1, $2, $3) RETURNING *;` [ title, author, content ]);
+                    let postData = await db.query(`INSERT INTO posts (title, author, content) VALUES ($1, $2, $3) RETURNING *;`, [ title, author, content ]);
                     let newPost = new Post(postData.rows[0]);
                     resolve (newPost)
 
                 } catch(err) {
-                    reject('Error') 
+                    reject('Error creating post: ' + err) 
                 }
                 
             })
