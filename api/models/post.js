@@ -13,11 +13,35 @@ module.exports = class Post
         static get all()
         {
             return new Promise (async (res, rej) =>
-            {
-                    // TO WRITE SQL CODE
+            {   
+                try
+                {
+                    let postsData = await db.query('SELECT * FROM posts');
+                    let posts = postsData.rows.map(b => new Post(b));
+                    resolve(posts);
+                }
+                catch (err)
+                {
+                    reject ('Posts not found');
+                }
             })
         }
 
         //CREATE POST CODE BELOW
+         static create(title, author, content) {
+            return new Promise (async (resolve, reject) => {
+                try {
+                    let postData = await db.query(`INSERT INTO posts (title, author, content) VALUES ($1, $2, $3) RETURNING *;` [ title, author, content ]);
+                    let newPost = new Post(postData.rows[0]);
+                    resolve (newPost)
+
+                } catch(err) {
+                    reject('Error') 
+                }
+                
+            })
+        }
+        
+        
 }
 

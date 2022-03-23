@@ -7,7 +7,7 @@ app.use(express.json());
 
 const postRoutes = require('./routes/posts');
 
-app.use('/routes', postRoutes);
+app.use('/posts', postRoutes);
 
 
 app.get('/', (req, res) => 
